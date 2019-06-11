@@ -9,7 +9,7 @@ export class Weather {
     }
 
     async getClima() {
-        const URI = `https://api.openweathermap.org/data/2.5/weather?q=${this.ciudad},${this.codigo}&appid=${this.apikey}&units=metric`;
+        const URI = `https://api.openweathermap.org/data/2.5/weather?q=${this.ciudad},${this.codigo}&lang=es&appid=${this.apikey}&units=metric`;
         //realizando petición con los datos recibidos
         const response = await fetch(URI);
         const data = await response.json(); //convirtiendo los datos a json
