@@ -15,10 +15,22 @@ const ui = new UI();
 //se ejecutará cuando el contenido haya sido cargado
 async function obtenerClima(){
     const data = await weather.getClima();
-    ui.render(data);
+    // SE OCULTA EL SPINNER
+    document.getElementById(
+        'spinner').style.display = 'none';
+    // MENSAJES DE ALERTA PARA INFORMAR RESULTADO
+    if (data.cod === "200") {
+        ui.render(data);
+    } else if (data.cod === "404") {
+        alert("Ciudad no encontrada");
+    } else {
+        alert("Error al obtener datos: " + message);
+    }
 }
 
 document.getElementById('w-change-btn').addEventListener('click', (e) => {
+    // SE MUESTRA EL SPINNER
+    document.getElementById('spinner').style.display = 'flex';
     const ciudad = document.getElementById('city').value;
     const codigo = document.getElementById('countryCode').value;
     weather.cambioLugar(ciudad, codigo);

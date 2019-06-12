@@ -5,17 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather App</title>
+    <!--
+        OJO: ESTE CSS NO SE IMPORTA POR PROBLEMAS CON EL MIME TYPE, VERIFICAR ERROR EN CONSOLA
+    -->
     <link rel="stylesheet" href="./public/css/bootstrap.min.css">
 </head>
 <body>
+    <!--
+        OJO: ES NECESARIO PASAR ESTE CSS A UN ARCHIVO APARTE
+    -->
+    <style type="text/css">
+        .sk-double-bounce {
+            width: 90px;
+            height: 90px;
+            position: relative;
+            margin: 40px auto; }
+        .sk-double-bounce .sk-child {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #231dac;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-doubleBounce 2s infinite ease-in-out;
+            animation: sk-doubleBounce 2s infinite ease-in-out; }
+        .sk-double-bounce .sk-double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s; }
+        @-webkit-keyframes sk-doubleBounce {
+            0%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0); }
+            50% {
+                -webkit-transform: scale(1);
+                transform: scale(1); } }
+        @keyframes sk-doubleBounce {
+            0%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0); }
+            50% {
+                -webkit-transform: scale(1);
+                transform: scale(1); } }
+        .container-spin{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ffffff91;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+        .size-65{
+            height: 65px;
+            width: 65px;
+        }
+        .capitalize{
+            text-transform: capitalize;
+        }
+        .t-shadow{
+            text-shadow: 1px 1px 1px black;
+        }
+    </style>
+    <div class="container-spin" id="spinner">
+        <div class="sk-double-bounce">
+            <div class="sk-child sk-double-bounce1"></div>
+            <div class="sk-child sk-double-bounce2"></div>
+        </div>
+    </div>
     <div class="container p-4">
         <div class="row">
-            <div class="col-md-4 mx-auto text-center">
+            <div class="col-md-5 mx-auto text-center">
                 <div class="card">
                     <div class="card-body">
-                        <h1 id="weather-location" class="h3"></h1>
-                        <h3 id="weather-description" class="h4"></h3>
+                        <h1 id="weather-location" class="h3 t-shadow"></h1>
+                        <h3 id="weather-description" class="h4 capitalize"></h3>
+                        <img id="weather-icon" class="size-65">
                         <h3 id="weather-string"></h3>
+                        <h5 id="max-string" class="red"></h5>
+                        <h5 id="min-string" class="blue"></h5>
                         <ul class="list-group mt-3">
                             <li id="weather-humidity" class="list-group-item"></li>
                             <li id="weather-wind" class="list-group-item"></li>
@@ -32,7 +108,7 @@
                         </div>
                         <div class="form-group">
                             <button class="btn btn-dark btn-block" id="w-change-btn">
-                                Obtener clima
+                                Obtener pronóstico del clima
                             </button>
                         </div>
                     </form>
